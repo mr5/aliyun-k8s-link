@@ -32,9 +32,3 @@ spec:
         - name: http
           containerPort: 80
           protocol: TCP
-      - name: dnsmasq
-        image: andyshinn/dnsmasq
-        ports:
-          - name: udp
-            containerPort: 53
-            protocol: UDP
