@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-link
+  annotations:
+    service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+spec:
+  type: LoadBalancer
+  ports:
+  - name: k8s-link
+    port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: k8s-link
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: k8s-link
+spec:
+  template:
+    metadata:
+      labels:
+        name: k8s-link
+        app: k8s-link
+    spec:
+      containers:
+      - name: spring-config-server
+        image: decent/aliyun-k8s-link:latest
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
