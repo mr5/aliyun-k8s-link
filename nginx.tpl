@@ -22,9 +22,9 @@ http {
     resolver ${NGINX_DNS_RESOLVER};
     default_type  application/octet-stream;
 
-    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                      '$status $body_bytes_sent "$http_referer" '
-                      '"$http_user_agent" "$http_x_forwarded_for"';
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
 
     sendfile        on;
     #tcp_nopush     on;
@@ -36,7 +36,7 @@ http {
         listen       80;
         server_name  localhost;
         location ~ /([^/]+)/(.*) {
-          proxy_pass http://$1/$2;
+          proxy_pass http://$1.svc.cluster.local/$2;
         }
     }
 }
