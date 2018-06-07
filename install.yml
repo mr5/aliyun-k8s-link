@@ -26,7 +26,7 @@ spec:
         app: k8s-link
     spec:
       containers:
-      - name: spring-config-server
+      - name: k8s-link
         image: decent/aliyun-k8s-link:latest
         ports:
         - name: http
